@@ -11,3 +11,8 @@ yarn add node-sass react-beautiful-dnd
 
 > note:
 > node-sass should be downgrade into version 4.14.1
+
+---
+
+### Create Header Component
+
