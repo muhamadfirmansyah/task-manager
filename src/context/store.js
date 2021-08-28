@@ -28,7 +28,7 @@ const initialState = {
             cards: []
         }
     },
-    listIds: []
+    listIds: ["list-1", "list-2"]
 }
 
 export const DataContext = createContext()

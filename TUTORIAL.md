@@ -21,3 +21,7 @@ yarn add node-sass react-beautiful-dnd
 ### Create Data Context
 
 ---
+
+### Create Board Component
+
+---
