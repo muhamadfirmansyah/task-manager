@@ -1,0 +1,43 @@
+.App {
+    text-align: center;
+}
+
+.card {
+    height: 10rem;
+    width: 5rem;
+    background-color: yellow;
+
+    &__image {
+        color: red;
+    }
+
+    &__heading {
+        background: orange;
+    }
+
+    &__para {
+        background: green;
+
+        &--normal {
+            font-weight: bold;
+        }
+
+        &--italic {
+            font-style: italic;
+        }
+    }
+}
+
+.btn {
+    width: 5rem;
+    height: 2rem;
+    padding: 5px 10px;
+
+    &--primary {
+        background: blue;
+    }
+
+    &--secondary {
+        background: green;
+    }
+}
