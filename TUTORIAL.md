@@ -65,3 +65,15 @@ import { v4 as uuid } from 'uuid'
 ### Create Add Board Function
 
 ---
+
+### Create Drag & Drop Card Function - One
+
+> Using `react-beautiful-dnd`
+
+`DragDropContext`: if it putted on the app component, it becomes draggable in all components.
+
+`Draggable`: component that can be dragged.
+
+`Droppable`: component that can be dropped.
+
+---

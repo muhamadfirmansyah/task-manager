@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { DragDropContext } from 'react-beautiful-dnd';
 import './App.scss';
 import Board from './components/Board';
 import Button from './components/Button';
@@ -10,18 +11,20 @@ const App = () => {
   const { store } = useContext(DataContext);
 
   return (
-    <div>
-      <Header />
-      
-      <div className="container">
-        { store.listIds.map((id) => {
-          const data = store.lists[id]
-          return <Board key={id} data={data} />
-        }) }
+    <DragDropContext>
+      <div>
+        <Header />
+        
+        <div className="container">
+          { store.listIds.map((id) => {
+            const data = store.lists[id]
+            return <Board key={id} data={data} />
+          }) }
 
-        <Button list />
+          <Button list />
+        </div>
       </div>
-    </div>
+    </DragDropContext>
   )
 }
 

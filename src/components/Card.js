@@ -3,8 +3,9 @@ import { DataContext } from '../context/store'
 
 import '../sass/Card.scss'
 import delicon from '../assets/delete.svg'
+import { Draggable } from 'react-beautiful-dnd'
 
-const Card = ({ id, data }) => {
+const Card = ({ id, data, index }) => {
     const [text, setText] = useState(data.title)
     const [open, setOpen] = useState(false)
 
@@ -23,21 +24,28 @@ const Card = ({ id, data }) => {
     }
 
     return (
-        <div className="card-list">
-            { open ? (
-                <form onSubmit={closeInput}>
-                    <input autoFocus
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                        onBlur={closeInput} />
-                </form>
-            ) : (
-                <div className="card-list__text">
-                    <p onDoubleClick={() => setOpen(true) }>{ data.title }</p>
-                    <img src={delicon} alt="delete" onClick={deleteCard} />
+        <Draggable draggableId={data.id} index={index}>
+            {(provide) => (
+                <div className="card-list"
+                     ref={provide.innerRef}
+                     {...provide.draggableProps}
+                     {...provide.dragHandleProps}>
+                    { open ? (
+                        <form onSubmit={closeInput}>
+                            <input autoFocus
+                                value={text}
+                                onChange={(e) => setText(e.target.value)}
+                                onBlur={closeInput} />
+                        </form>
+                    ) : (
+                        <div className="card-list__text">
+                            <p onDoubleClick={() => setOpen(true) }>{ data.title }</p>
+                            <img src={delicon} alt="delete" onClick={deleteCard} />
+                        </div>
+                    ) }
                 </div>
-            ) }
-        </div>
+            )}
+        </Draggable>
     )
 }
 
