@@ -45,3 +45,11 @@ yarn add node-sass react-beautiful-dnd
 ### Create Delete Card Function
 
 ---
+
+### Create Add Button Component
+
+```sh
+yarn add react-textarea-autosize
+```
+
+---

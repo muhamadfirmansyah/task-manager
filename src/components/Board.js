@@ -3,6 +3,7 @@ import BoardTitle from './BoardTitle';
 
 import menu from '../assets/menu.svg'
 import Card from './Card';
+import Button from './Button';
 
 const Board = ({ data }) => {
     return (
@@ -17,8 +18,8 @@ const Board = ({ data }) => {
                 { data.cards.map(card => 
                     <Card key={card.id} id={data.id} data={card} />
                 ) }
+                <Button />
             </div>
-            <button>add</button>
         </div>
     )
 }
