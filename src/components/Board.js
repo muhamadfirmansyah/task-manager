@@ -18,7 +18,7 @@ const Board = ({ data }) => {
                 { data.cards.map(card => 
                     <Card key={card.id} id={data.id} data={card} />
                 ) }
-                <Button />
+                <Button id={data.id} />
             </div>
         </div>
     )

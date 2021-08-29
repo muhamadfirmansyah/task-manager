@@ -53,3 +53,11 @@ yarn add react-textarea-autosize
 ```
 
 ---
+
+### Create Add Card Function
+
+```js
+import { v4 as uuid } from 'uuid'
+```
+
+---

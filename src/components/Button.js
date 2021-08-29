@@ -1,13 +1,25 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Textarea from 'react-textarea-autosize'
 
 import close from '../assets/close.svg';
+import { DataContext } from "../context/store";
 
 import '../sass/Button.scss'
 
-const Button = ({ list }) => {
+const Button = ({ id, list }) => {
 
     const [open, setOpen] = useState(false)
+    const [text, setText] = useState("")
+
+    const { createCard } = useContext(DataContext)
+
+    const addCard = () => {
+        if (text !== "") {
+            createCard(id, text)
+            setText("")
+        }
+
+    }
 
     const showForm = () => {
         const textButton = list ? 'add board' : 'add card'
@@ -20,9 +32,11 @@ const Button = ({ list }) => {
                     <Textarea className="text-area" 
                               placeholder={placeholder} 
                               onBlur={() => setOpen(false) }
+                              value={text}
+                              onChange={(e) => setText(e.target.value)}
                               autoFocus />
                     <div>
-                        <button className="add">{ textButton }</button>
+                        <button className="add" onMouseDown={ addCard }>{ textButton }</button>
                         <button className="close">
                             <img src={close} alt="close" onClick={() => setOpen(false)} />
                         </button>
