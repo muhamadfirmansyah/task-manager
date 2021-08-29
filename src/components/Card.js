@@ -8,7 +8,7 @@ const Card = ({ id, data }) => {
     const [text, setText] = useState(data.title)
     const [open, setOpen] = useState(false)
 
-    const { changeCardTitle } = useContext(DataContext)
+    const { changeCardTitle, deleteListCard } = useContext(DataContext)
 
     const closeInput = (e) => {
         e.preventDefault();
@@ -16,6 +16,10 @@ const Card = ({ id, data }) => {
         changeCardTitle(id, data.id, text)
 
         setOpen(false)
+    }
+
+    const deleteCard = () => {
+        deleteListCard(id, data.id)
     }
 
     return (
@@ -30,7 +34,7 @@ const Card = ({ id, data }) => {
             ) : (
                 <div className="card-list__text">
                     <p onDoubleClick={() => setOpen(true) }>{ data.title }</p>
-                    <img src={delicon} alt="delete" />
+                    <img src={delicon} alt="delete" onClick={deleteCard} />
                 </div>
             ) }
         </div>

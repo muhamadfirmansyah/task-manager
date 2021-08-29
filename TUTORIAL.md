@@ -38,6 +38,10 @@ yarn add node-sass react-beautiful-dnd
 
 ---
 
-### Create Card Component and Create Card
+### Create Card Component and Create Change Card Title
+
+---
+
+### Create Delete Card Function
 
 ---

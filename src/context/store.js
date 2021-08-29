@@ -51,17 +51,28 @@ export const DataProvider = (props) => {
     }
 
     const changeCardTitle = (boardId, cardId, text) => {
-        const item = store.lists[boardId].cards.find(item => item.id === cardId)
-        item.title = text
+        const item = store.lists
+        const card = item[boardId].cards.find(item => item.id === cardId)
+        card.title = text
+
+        const newStore = {
+            ...store,
+            lists: item
+        }
+
+        setStore(newStore)
+    }
+
+    const deleteListCard = (boardId, cardId) => {
+        const item = store.lists[boardId]
+        
+        item.cards = item.cards.filter(item => item.id !== cardId)
 
         const newStore = {
             ...store,
             lists: {
                 ...store.lists,
-                [boardId]: {
-                    ...store.lists[boardId],
-                    cards: [...store.lists[boardId].cards.filter(card => card.id !== item.id), item]
-                }
+                [boardId]: item
             }
         }
 
@@ -69,7 +80,7 @@ export const DataProvider = (props) => {
     }
 
     return (
-        <DataContext.Provider value={{ store, changeTitle, changeCardTitle }}>
+        <DataContext.Provider value={{ store, changeTitle, changeCardTitle, deleteListCard }}>
             {props.children}
         </DataContext.Provider>
     )
