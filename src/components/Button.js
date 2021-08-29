@@ -11,11 +11,19 @@ const Button = ({ id, list }) => {
     const [open, setOpen] = useState(false)
     const [text, setText] = useState("")
 
-    const { createCard } = useContext(DataContext)
+    const { createCard, createBoard } = useContext(DataContext)
 
     const addCard = () => {
         if (text !== "") {
             createCard(id, text)
+            setText("")
+        }
+
+    }
+
+    const addBoard = () => {
+        if (text !== "") {
+            createBoard(text)
             setText("")
         }
 
@@ -36,7 +44,7 @@ const Button = ({ id, list }) => {
                               onChange={(e) => setText(e.target.value)}
                               autoFocus />
                     <div>
-                        <button className="add" onMouseDown={ addCard }>{ textButton }</button>
+                        <button className="add" onMouseDown={ list ? addBoard : addCard }>{ textButton }</button>
                         <button className="close">
                             <img src={close} alt="close" onClick={() => setOpen(false)} />
                         </button>

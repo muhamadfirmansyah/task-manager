@@ -61,3 +61,7 @@ import { v4 as uuid } from 'uuid'
 ```
 
 ---
+
+### Create Add Board Function
+
+---
