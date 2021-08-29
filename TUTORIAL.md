@@ -37,3 +37,7 @@ yarn add node-sass react-beautiful-dnd
 ### Create Title Component - Two
 
 ---
+
+### Create Card Component and Create Card
+
+---

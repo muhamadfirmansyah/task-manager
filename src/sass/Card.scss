@@ -1,0 +1,29 @@
+.card-list {
+    background: #FFFFFF;
+    margin: 0.3rem;
+    min-height: 2.5rem;
+    padding: 0.7rem .5rem;
+    border-radius: 3px;
+
+    &__text {
+        display: flex;
+        justify-content: space-between;
+
+        p {
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        img {
+            width: 0.7rem;
+        }
+    }
+
+    input {
+        font-size: 1rem;
+        font-weight: 200;
+        width: 100%;
+        border: none;
+        outline: none;
+    }
+}

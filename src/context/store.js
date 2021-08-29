@@ -50,8 +50,26 @@ export const DataProvider = (props) => {
         setStore(newStore)
     }
 
+    const changeCardTitle = (boardId, cardId, text) => {
+        const item = store.lists[boardId].cards.find(item => item.id === cardId)
+        item.title = text
+
+        const newStore = {
+            ...store,
+            lists: {
+                ...store.lists,
+                [boardId]: {
+                    ...store.lists[boardId],
+                    cards: [...store.lists[boardId].cards.filter(card => card.id !== item.id), item]
+                }
+            }
+        }
+
+        setStore(newStore)
+    }
+
     return (
-        <DataContext.Provider value={{ store, changeTitle }}>
+        <DataContext.Provider value={{ store, changeTitle, changeCardTitle }}>
             {props.children}
         </DataContext.Provider>
     )

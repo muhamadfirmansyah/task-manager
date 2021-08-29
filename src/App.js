@@ -8,7 +8,6 @@ const App = () => {
 
   const { store } = useContext(DataContext);
 
-  console.log(store);
   return (
     <div>
       <Header />
