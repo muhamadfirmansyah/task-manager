@@ -1,0 +1,22 @@
+.board-title {
+    height: 2rem;
+    width: 30rem;
+    margin: 0.5rem 0;
+
+    input {
+        height: 100%;
+        width: 100%;
+        border: none;
+        display: block;
+        font-size: 1.17rem;
+        font-weight: bold;
+        outline: none;
+        box-sizing: border-box;
+    }
+
+    h3 {
+        font-size: 1.17rem;
+        height: 100%;
+        font-weight: bold;
+    }
+}

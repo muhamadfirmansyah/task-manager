@@ -33,3 +33,7 @@ yarn add node-sass react-beautiful-dnd
 ```
 
 ---
+
+### Create Title Component - Two
+
+---
