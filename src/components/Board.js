@@ -4,14 +4,15 @@ import BoardTitle from './BoardTitle';
 import menu from '../assets/menu.svg'
 import Card from './Card';
 import Button from './Button';
-import { Droppable } from 'react-beautiful-dnd';
+import { Draggable, Droppable } from 'react-beautiful-dnd';
 
-const Board = ({ data }) => {
+const Board = ({ data, index }) => {
     return (
-        <Droppable droppableId={data.id}>
+        <Draggable draggableId={data.id} index={index}>
             { (provide) => (
                 <div ref={provide.innerRef}
-                     {...provide.droppableProps}
+                     {...provide.draggableProps}
+                     { ...provide.dragHandleProps }
                      className="board">
                     <div className="board__title">
                         <BoardTitle id={data.id} title={data.title} />
@@ -19,16 +20,21 @@ const Board = ({ data }) => {
                             <img src={menu} alt="menu" />
                         </div>
                     </div>
-                    <div>
-                        { data.cards.map((card, index) => 
-                            <Card key={card.id} id={data.id} data={card} index={index} />
+                    <Droppable droppableId={data.id}>
+                        { (provide) => (
+                            <div ref={provide.innerRef}
+                                { ...provide.droppableProps }>
+                                { data.cards.map((card, index) => 
+                                    <Card key={card.id} id={data.id} data={card} index={index} />
+                                ) }
+                                { provide.placeholder } 
+                            </div>
                         ) }
-                        { provide.placeholder }
-                        <Button id={data.id} />
-                    </div>
+                    </Droppable>
+                    <Button id={data.id} />
                 </div>
             ) }
-        </Droppable>
+        </Draggable>
     )
 }
 

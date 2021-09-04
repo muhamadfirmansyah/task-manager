@@ -66,7 +66,7 @@ import { v4 as uuid } from 'uuid'
 
 ---
 
-### Create Drag & Drop Card Function - One
+### Create Drag & Drop Board and Card Function - One
 
 > Using `react-beautiful-dnd`
 
@@ -75,5 +75,9 @@ import { v4 as uuid } from 'uuid'
 `Draggable`: component that can be dragged.
 
 `Droppable`: component that can be dropped.
+
+---
+
+### Create Drag & Drop Board and Card Function - Two
 
 ---

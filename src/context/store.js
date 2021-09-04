@@ -121,8 +121,12 @@ export const DataProvider = (props) => {
         setStore(newStore)
     }
 
+    const updateDrag = (data) => {
+        setStore(data);
+    }
+
     return (
-        <DataContext.Provider value={{ store, changeTitle, changeCardTitle, deleteListCard, createCard, createBoard }}>
+        <DataContext.Provider value={{ store, changeTitle, changeCardTitle, deleteListCard, createCard, createBoard, updateDrag }}>
             {props.children}
         </DataContext.Provider>
     )
