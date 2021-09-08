@@ -1,5 +1,5 @@
-import { useState, createContext } from "react";
-import { v4 as uuid } from 'uuid';
+import { createContext, useReducer } from "react";
+import { listReducer } from "../reducers/listReducer";
 
 const cards = [
     {
@@ -35,98 +35,11 @@ const initialState = {
 export const DataContext = createContext()
 
 export const DataProvider = (props) => {
-    const [store, setStore] = useState(initialState);
-    const changeTitle = (id, text) => {
-        const item = store.lists[id]
-        item.title = text
-
-        const newStore = {
-            ...store,
-            lists: {
-                ...store.lists,
-                [id]: item
-            }
-        }
-
-        setStore(newStore)
-    }
-
-    const changeCardTitle = (boardId, cardId, text) => {
-        const item = store.lists
-        const card = item[boardId].cards.find(item => item.id === cardId)
-        card.title = text
-
-        const newStore = {
-            ...store,
-            lists: item
-        }
-
-        setStore(newStore)
-    }
-
-    const deleteListCard = (boardId, cardId) => {
-        const item = store.lists[boardId]
-        
-        item.cards = item.cards.filter(item => item.id !== cardId)
-
-        const newStore = {
-            ...store,
-            lists: {
-                ...store.lists,
-                [boardId]: item
-            }
-        }
-
-        setStore(newStore)
-    }
-
-    const createCard = (listId, text) => {
-        const item = store.lists[listId]
-
-        const id = uuid()
-        const newCard = {
-            id: `card-${id}`,
-            title: text
-        }
-
-        item.cards = [...item.cards, newCard]
-
-        const newStore = {
-            ...store,
-            lists: {
-                ...store.lists,
-                [listId]: item
-            }
-        }
-
-        setStore(newStore);
-    }
-
-    const createBoard = (text) => {
-        const id = `list-${uuid()}`
-        const newBoard = {
-            id: id,
-            title: text,
-            cards: []
-        }
-
-        const newStore = {
-            listIds: [...store.listIds, id],
-            lists: {
-                ...store.lists,
-                [id]: newBoard
-            }
-        }
-
-        setStore(newStore)
-    }
-
-    const updateDrag = (data) => {
-        setStore(data);
-    }
+    
+    const [lists, dispatch] = useReducer(listReducer, initialState)
 
     return (
-        <DataContext.Provider value={{ store, changeTitle, changeCardTitle, deleteListCard, createCard, createBoard, updateDrag }}>
+        <DataContext.Provider value={{ lists, dispatch }}>
             {props.children}
         </DataContext.Provider>
     )

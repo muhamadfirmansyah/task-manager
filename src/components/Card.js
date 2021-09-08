@@ -4,23 +4,24 @@ import { DataContext } from '../context/store'
 import '../sass/Card.scss'
 import delicon from '../assets/delete.svg'
 import { Draggable } from 'react-beautiful-dnd'
+import { deleteCard, updateTitleCard } from '../actions/listAction'
 
 const Card = ({ id, data, index }) => {
     const [text, setText] = useState(data.title)
     const [open, setOpen] = useState(false)
 
-    const { changeCardTitle, deleteListCard } = useContext(DataContext)
+    const { dispatch } = useContext(DataContext)
 
     const closeInput = (e) => {
         e.preventDefault();
         
-        changeCardTitle(id, data.id, text)
+        dispatch(updateTitleCard(id, data.id, text))
 
         setOpen(false)
     }
 
-    const deleteCard = () => {
-        deleteListCard(id, data.id)
+    const btnDeleteCard = () => {
+        dispatch(deleteCard(id, data.id))
     }
 
     return (
@@ -40,7 +41,7 @@ const Card = ({ id, data, index }) => {
                     ) : (
                         <div className="card-list__text">
                             <p onDoubleClick={() => setOpen(true) }>{ data.title }</p>
-                            <img src={delicon} alt="delete" onClick={deleteCard} />
+                            <img src={delicon} alt="delete" onClick={btnDeleteCard} />
                         </div>
                     ) }
                 </div>

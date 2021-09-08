@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { updateTitleBoard } from "../actions/listAction";
 import { DataContext } from "../context/store";
 
 import '../sass/BoardTitle.scss'
@@ -8,14 +9,14 @@ const BoardTitle = ({ id, title }) => {
     const [text, setText] = useState(title)
     const [open, setOpen] = useState(false)
 
-    const { changeTitle } = useContext(DataContext)
+    const { dispatch } = useContext(DataContext)
 
     const closeInput = (e) => {
         e.preventDefault()
         
         setOpen(false)
 
-        changeTitle(id, text)
+        dispatch(updateTitleBoard(id, text))
     }
 
     return (

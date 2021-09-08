@@ -1,5 +1,6 @@
 import { useContext, useState } from "react"
 import Textarea from 'react-textarea-autosize'
+import { createBoard, createCard } from "../actions/listAction";
 
 import close from '../assets/close.svg';
 import { DataContext } from "../context/store";
@@ -11,11 +12,11 @@ const Button = ({ id, list }) => {
     const [open, setOpen] = useState(false)
     const [text, setText] = useState("")
 
-    const { createCard, createBoard } = useContext(DataContext)
+    const { dispatch } = useContext(DataContext)
 
     const addCard = () => {
         if (text !== "") {
-            createCard(id, text)
+            dispatch(createCard(id, text))
             setText("")
         }
 
@@ -23,7 +24,7 @@ const Button = ({ id, list }) => {
 
     const addBoard = () => {
         if (text !== "") {
-            createBoard(text)
+            dispatch(createBoard(text))
             setText("")
         }
 
